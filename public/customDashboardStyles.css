@@ -1,0 +1,17 @@
+
+@media screen and (max-width: 575px) 
+    { 
+        #supplierInfoCard
+        {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+#logoFont
+{
+  font-family: 'Tajawal', sans-serif;
+}
+body
+{
+    font-family: 'Tajawal', sans-serif;
+}

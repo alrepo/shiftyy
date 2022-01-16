@@ -1,0 +1,458 @@
+
+body
+ {
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: auto;
+    color: black;
+    font-family: 'Tajawal', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+/*  Start of Colored/Large Loading Animation */
+.spinnerWrapper
+{
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 20px solid grey;
+    border-top-color: #1502eb;
+    animation: spin 1s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+@keyframes fadeOut
+{
+  100%{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+  .dots {
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: grey;
+  }
+  
+  .dot:nth-child(1) {
+    transform: translateX(100%);
+    background-color: grey; 
+    animation: left 1s ease alternate infinite;
+  }
+  
+  .dot:nth-child(2) {
+    animation: center 1s ease infinite;
+  }
+  
+  .dot:nth-child(3) {
+    transform: translateX(-100%);
+    background-color: grey;
+    animation: right 1s ease alternate infinite;
+  }
+  
+  @keyframes left {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    50% {
+      transform: translateX(-10%);
+    }
+  
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes right {
+    0% {
+      transform: translateX(-100%);
+    }
+  
+    50% {
+      transform: translateX(10%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes center {
+    0%,
+    100% {
+      transform: scale(0.5);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  }
+/*  End of Colored/Large Loading Animation */
+
+#signupHyperlink
+{
+  color: #fff;
+  text-decoration: none;
+}
+.signup
+{
+  margin-left: 5px;
+  color: white;
+}
+#supplierProfileCardsContainer
+{
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-select-province,.form-select-city
+{
+  border-radius: 15px;
+  text-align: center !important;
+  border: none;
+	background: #1502be;
+  color: #fff;
+  outline: none !important;
+  max-width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+.form-select-city[disabled]
+{
+  border: solid 1px #1502be;
+  color: rgb(179, 181, 187);
+}
+#supplierProfileCardsContainer .card{
+  width: 250px !important;
+  background-color: #fff;
+  padding: 0;
+}
+#startAppendingFromHere
+{
+  justify-content: center;
+}
+#supplierProductsCardsContainer
+{
+  display: block;
+  text-align: center;
+}
+#supplierProductsCardsContainer .card{
+  width: 200px !important;
+  background-color: #fff;
+  padding: 0;
+}
+.book{
+  height: 270px;
+}
+.card-img-top
+{
+  height : 150px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+#supplierProductsCardsContainer .card-img-top
+{
+  /* max-height : 150px; */
+  margin-left: auto;
+  margin-right: auto;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+#barberImage
+{
+  max-width : 180px;
+  max-height : 180px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#logoFont
+{
+  font-family: 'Tajawal', sans-serif;
+}
+#pagination-wrapper
+{
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.paginationButtons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #fff;
+  color: #1502be;
+  font-size: 20px;
+  border-width: 0;
+  padding: 0;
+  margin-right: 2px;
+}
+.paginationButtonsClicked {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #1502be;
+  color: #fff;
+  font-size: 20px;
+  border-width: 0;
+  padding: 0;
+  margin-right: 2px;
+}
+.paginationButtons:active {
+  background-color: #1502be;
+  color: #fff;
+  transform: scale(1.5,1.5);
+  transition: all 0.8 ease-out;
+}
+#payment-options
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+}
+.payment-options
+{
+  /* cursor: pointer; */
+  height: 100px;
+  max-width: 100px;
+  border: solid 1px black;
+  border-radius: 15px;
+  margin: 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+}
+.payment-options img
+{
+  max-width: 100%;
+  max-height: 100%;
+}
+@media (max-width: 767.98px)
+{
+  .dropdown-menu
+  {
+    text-align: left;
+  }
+  ul.bottomNavBar {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       overflow: hidden;
+       
+       margin-top: 70px;
+       width: 100%;
+       display: flex;
+       justify-content: center;
+     }
+
+     ul.bottomNavBar li button {
+       display: block;
+       color: #fff;
+       text-align: center;
+       padding: 2px 4px;
+       text-decoration: none;
+       
+       border: none;
+     }
+
+     ul.bottomNavBar li button:hover {
+       text-decoration: none;
+       color: #fff;
+       background-color: #52057b;
+     }
+     .content
+     {
+       height: 500px;
+       width: 2500px;
+       background-color: #f4f4f2;
+       margin-top: 2px;
+       margin-right: 2px;
+       margin-left: 2px;
+       display: flex;
+       justify-content: center;
+     }
+}
+@media (min-width: 520px)
+{
+  #searchBoxRow
+  {
+    min-height: 300px;
+  }
+}
+
+/* /////////////// START MOBILE PHONE STYLES ////////////// */
+@media (min-width: 576.1px) 
+{
+  #searchBoxRow
+  {
+    margin-top: 50px !important;
+  }
+}
+@media (max-width: 576px)
+{
+  #emptyKitchenImageColumn
+  {
+    display: none;
+  }
+  #locationColumn
+  {
+    margin-top: 400px !important;
+  }
+  .form-select-province,.form-select-city
+  {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (max-width: 530px)
+{
+  #searchBoxRow
+  {
+    /* padding-top: 25px; */
+    /* padding-bottom: 40px; */
+  }
+}
+
+@media (min-width: 992px)
+{
+  .dropdown-menu
+  {
+    text-align: right;
+  }
+  #noneCollapsedNavbarItems
+  {
+    display: none;
+  }
+  /* ////////////START SIDEBAR STYLES/////////////// */
+  .feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+  }
+
+  /*
+   * Sidebar
+   */
+
+  .sidebar {
+    text-align: right;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    right: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 0;
+  }
+
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 48px; /* Height of navbar */
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    
+    width: 220px;
+    }
+
+  .sidebar button {
+    font-weight: 500;
+    color: white;
+    display: inline-block;
+    width: 165px;
+    margin-left: 10px;
+    
+    text-align: right;
+    width: 90%;
+    }
+  .sidebar button:hover{
+    background-color: #52057b;
+  }
+  .sidebar button .feather {
+    margin-right: 4px;
+    color: #000;
+  }
+
+  .sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+  }
+  /*
+   * Navbar
+   */
+  .navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+  }
+
+  .form-control-dark {
+    color: #fff;
+    
+  }
+
+  .form-control-dark:focus {
+    border-color: transparent;
+  }
+  /*
+   * Utilities
+   */
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1x solid #e5e5e5; }
+  /* ////////////END SIDEBAR STYLES/////////////// */
+
+  .content
+  {
+    height: 500px;
+    width: 2500px;
+    background-color: #f4f4f2;
+    margin-top: 74px;
+    margin-right: 223px;
+    margin-left: 2px;
+    display: flex;
+    justify-content: center;
+  }
+}

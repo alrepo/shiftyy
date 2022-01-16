@@ -1,0 +1,32 @@
+
+                        <% for (var i=1; i<=Object.keys(products).length; i++) { %>
+
+                            <!-- ///////////////////////////// Start Product Template //////////////////////////////// -->
+                            <div id="initialProductsContainer" class="productCard" style="display: inline-block;">
+                                <div class="card mb-2 btn book" id="" style="border-radius: 15px; color: blue;">
+                                    <img class="card-img-top" id="s3jAqqnKKjTljekInwvHGRkyiVW2image"
+                                        src="https://res.cloudinary.com/ddu27xuu5/image/upload/v1626798988/suppliers/products/product_default_img_zmyq57.svg"
+                                        style="width: 100%;">
+                                    <div class="card-body" style="text-align: center; position: relative;">
+                                        <h5 class="card-title" id="s3jAqqnKKjTljekInwvHGRkyiVW2name"
+                                            style="font-size: 15px; display: block; text-align: center; overflow: auto;"><%= products["product"+i]["product"+i+"Description"] %></h5>
+                                            <!-- <label id="labelcheckbox<%= i %>" for="pdct<%= i %>" class="productCheckbox"
+                                                style="margin-right: 10px; font-size: 20px"><%= products["product"+i]["product"+i+"Description"] %></label> -->
+                                                <div class="productPriceBox">
+                                                    <span class="productName" style="display: block; font-size: 16px; font-weight: 700;">
+                                                        <%= products["product"+i]["productName"] %>
+                                                    </span>
+                                                    <span class="productPrice" style="font-size: 16px; padding-left: 4px; padding-right: 4px;">
+                                                        <%= products["product"+i]["productPrice"] %> ريال
+                                                    </span>
+                                                    <span class="startingFrom" style="font-size: 13px;">
+                                                        <%= products["product"+i]["productQuantity"] %>
+                                                    </span>
+                                                </div>
+                                        <div class="locationContainer" style="position: absolute; bottom: 0px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////// End Product Template //////////////////////////////// -->
+    
+                            <% } %>

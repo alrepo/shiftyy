@@ -1,0 +1,653 @@
+html
+{
+  height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+#logoFont
+{
+  font-family: 'Tajawal', sans-serif;
+}
+body{
+  font-family: 'Tajawal', sans-serif;
+}
+/*  Start of Loading Animation */
+.loadingAnimation
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    z-index: 99;
+    justify-content: center;
+    align-items: center;
+    background-color: white;  
+}
+.loadingAnimation.hidden
+{
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeOut
+{
+  100%{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+  .dots {
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #022e57;
+  }
+  
+  .dot:nth-child(1) {
+    transform: translateX(100%);
+    background-color: #39a9cb; 
+    animation: left 1s ease alternate infinite;
+  }
+  
+  .dot:nth-child(2) {
+    animation: center 1s ease infinite;
+  }
+  
+  .dot:nth-child(3) {
+    transform: translateX(-100%);
+    background-color: #eba83a;
+    animation: right 1s ease alternate infinite;
+  }
+  
+  @keyframes left {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    50% {
+      transform: translateX(-10%);
+    }
+  
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes right {
+    0% {
+      transform: translateX(-100%);
+    }
+  
+    50% {
+      transform: translateX(10%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes center {
+    0%,
+    100% {
+      transform: scale(0.5);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  }
+/*  End of Loading Animation */
+
+.container-fluid
+{
+  margin-top: 70px;
+  padding: 10px;
+}
+#supplierImage
+{
+  width: 150px;
+  height: 150px;
+  align-self: center;
+  box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+#bookingButton
+{
+  color:#fff;
+  background-color: #1502be;
+  border-radius: 15px;
+}
+.productCard
+{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+ /* Start Basket and Payment Reciept Modal Styles */
+
+.modal.modal-bottom .modal-dialog {
+  height: 90%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+#modal-dialog-container
+{
+  overflow-y: scroll !important;
+}
+
+.modal.modal-bottom.fade .modal-dialog {
+  -webkit-transition: opacity 0.3s linear, bottom 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, bottom 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, bottom 0.3s ease-out;
+  transition: opacity 0.3s linear, bottom 0.3s ease-out;
+}
+
+.modal.modal-bottom.fade.show .modal-dialog {
+  bottom: 0;
+}
+
+.modal.modal-bottom.fade .modal-dialog {
+  bottom: -100%;
+}
+.modal-footer
+{
+  justify-content: center !important;
+}
+.modal-header .close
+{
+  padding: 1rem 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+.close
+{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+}
+.modal-footer
+{
+  padding: 1rem 1rem;
+  width: 100%;
+}
+ /* End Basket and Payment Reciept Modal Styles */
+
+/* Desktop Styles */
+@media (min-width: 768px)
+{
+  /* #nameContainer
+  {
+    max-width: 70%;
+  }
+  #phoneContainer
+  {
+    max-width: 70%;
+  }
+  #dateAndTimePickerContainer
+  {
+    max-width: 70%;
+  }
+  #AddressSharingContainer
+  {
+    max-width: 70%;
+  } */
+  #supplierOverallInfoCard
+  {
+    min-height: 150px;
+    padding: 10px;
+  }
+  #supplierProductsCard
+  {
+    min-height: 150px;
+    padding: 10px;
+  }
+  #supplierDataContainer
+  {
+    min-height: 150px;
+  }
+  #productsDescriptionsContainer
+  {
+    min-height: 50px;
+  }
+
+  #supplierImageContainer
+  {
+    /* background-color: blue; */
+    text-align: center;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  #ProductTitleContainer,#BookingDateAndTimeTitleContainer
+  {
+    text-align: center;
+    /* background-color: green; */
+    padding-right: 10px;
+  }
+  #bookingPickersContainer
+  {
+    /* background-color: red; */
+    min-height: 100px;
+    padding: 10px;
+  }
+  #datetime-picker
+  { 
+    /* -webkit-appearance: none !important; */
+    -webkit-border-radius: 15px !important;
+    -moz-appearance: none !important;
+    text-align: center !important;
+    border-radius: 15px !important;
+  }
+  #datetime-picker:focus
+  {
+    border-radius: 0;
+    border: solid 1px #1502be;
+  }
+  /* #requiredBlock
+  {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+  #supplierLocationContainer
+  {
+    display: flex;
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    /* background-color: yellow; */
+    text-align: right;
+    align-items: center;
+ }
+
+  #supplierNameContainer
+  {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    top: 30px;
+    /* background-color: green; */
+    text-align: right;
+    font-size: 30px;
+    padding-bottom: 50px;
+  }
+ 
+  #supplierNameDesktopView
+  {
+    display: flex;
+    align-items: center;
+  }
+  #supplierDeliveryTimes
+  {
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: 900;
+    text-align: right;
+    font-size: 16px;
+    border-right: solid 1px black;
+    margin-bottom: 0 !important;
+  }
+  #bookingDateAndTimePickers
+  {
+    min-height: 150px;
+    padding: 10px;
+  }
+  /* Products Container Styles */
+  #productsOneRowDescription
+  {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    border-bottom: 0.5px solid grey;
+    min-height: 70px;
+    padding: 10px;
+    max-width: 97%;
+    /* background-color: yellow; */
+  }
+  .checkboxInput
+  {
+    flex: 1;
+  }
+  .productCheckbox
+  {
+    flex: 8;
+  }
+  .nameWraper
+  {
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    height: auto;
+    font-size: 20px;
+    text-align: right;
+  }
+  .productNameBox
+  {
+    /* background-color: orange; */
+    display: inline-block;
+    min-height: 30px;
+    font-size: 20px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    max-width: 100%;
+    overflow: auto;
+  }
+  .productPriceBox
+  {
+    align-items: center;
+    /* background-color: blue; */
+    display: inline-block;
+    text-align: center;
+    margin-right: auto;
+    font-size: 12px;
+ }
+  .startingFrom
+  {
+    /* background-color: red; */
+    display: inline-block;
+    align-self: center;
+    font-size: 20px;
+    margin-right: auto;
+    text-align: center;
+    width: 100%;
+  }
+  .productPrice
+  {
+    margin-right: auto;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #caf7e3;
+  }
+  #bookingPickersContainer
+  {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    min-height: 70px;
+    padding: 10px;
+    width: 200px;
+  }
+
+  #contactContainerTitleBox
+  {
+    display: flex;
+    justify-content: center;
+  }
+  #clientName
+  {
+    position: absolute;
+    height: 50px;
+    top: 30%;
+    /* background-color: yellow; */
+  }
+  #clientPhone
+  {
+    position: absolute;
+    height: 50px;
+    top: 55%;
+    /* background-color: green; */
+  }
+  .titles
+  {
+    text-align: center;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .borderLine
+  {
+    border: solid 1px blakc;
+    height: 2px;
+    width: 95%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+  }
+}
+
+/* Start of Mobile Styles */
+@media (max-width: 767.9px)
+{
+  #supplierOverallInfoCard
+  {
+    height: 100%;
+    /* padding: 10px; */
+  }
+  #supplierImageContainer
+  {
+    /* background-color: blue; */
+    text-align: center;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 2px;
+  }
+  #supplierDataContainer
+  {
+    min-height: 100px;
+  }
+  #supplierProductsCard
+  {
+    min-height: 150px;
+  }
+  #productsDescriptionsContainer
+  {
+    min-height: 70px;
+  }
+  #bookingPickersContainer
+  {
+    /* background-color: red; */
+    min-height: 100px;
+  }
+  #datetime-picker
+  { 
+    /* -webkit-appearance: none !important; */
+    -webkit-border-radius: 15px !important;
+    -moz-appearance: none !important;
+    text-align: center !important;
+    border-radius: 15px !important;
+  }
+  #datetime-picker:focus
+  {
+    border-radius: 0;
+    border: solid 1px #1502be;
+  }
+  /* #requiredBlock
+  {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+  #ProductTitleContainer
+  {
+    /* background-color: red; */
+    text-align: center;
+  }
+  #supplierLocationContainer
+  {
+    display: flex;
+    height: 20px;
+    bottom: 0;
+    /* background-color: yellow; */
+    text-align: center;
+    align-items: right;
+    justify-content: start;
+ }
+  #provinceText
+  {
+    /* background-color: blue; */
+  }
+  #cityText
+  {
+    /* background-color: orange; */
+  }
+  #supplierNameContainer
+  {
+    display: flex;
+    min-height: 50px;
+    /* background-color: green; */
+    font-size: 25px;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10px;
+  }
+ 
+  #supplierDeliveryTimes
+  {
+    align-items: center;
+    font-weight: 900;
+    text-align: right;
+    justify-content: start;
+    font-size: 14px;
+  }
+  #deliveryTimesIcon
+  {
+    margin-top: 5px;
+  }
+  #bookingDateAndTimePickers
+  {
+    min-height: 150px;
+  }
+  #clientDataContainer
+  {
+    /* padding: 10px; */
+  }
+  /* Products Container Styles */
+  #productsOneRowDescription
+  {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid grey;
+    min-height: 50px;
+    margin-right: 15px;
+    padding: 10px;
+    max-width: 95%;
+    /* background-color: red; */
+  }
+  .checkboxInput
+  {
+    flex: 1;
+    justify-self: flex-end;
+    border: solid 1px black;
+  }
+  .productCheckbox
+  {
+    flex: 6;
+  }
+  .nameWraper
+  {
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    height: auto;
+    font-size: 16px;
+    text-align: right;
+  }
+  .productNameBox
+  {
+    /* background-color: orange; */
+    display: inline-block;
+    min-height: 30px;
+    font-size: 16px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    max-width: 100%;
+    overflow: auto;
+  }
+  .productPriceBox
+  {
+    align-items: center;
+    /* background-color: blue; */
+    display: inline-block;
+    text-align: center;
+    margin-right: auto;
+    font-size: 14px;
+ }
+  .startingFrom
+  {
+    /* background-color: red; */
+    display: inline-block;
+    align-self: center;
+    font-size: 12px;
+    margin-right: auto;
+    text-align: center;
+  }
+  .productPrice
+  {
+    /* background-color: orange; */
+    margin-right: auto;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #caf7e3;
+  }
+
+  #contactContainerTitleBox
+  {
+    display: flex;
+    justify-content: center;
+  }
+  #clientName
+  {
+    position: absolute;
+    height: 50px;
+    top: 30%;
+    /* background-color: yellow; */
+  }
+  #clientPhone
+  {
+    position: absolute;
+    height: 50px;
+    top: 55%;
+    /* background-color: green; */
+  }
+  .titles
+  {
+    text-align: center;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: red; */
+  }
+  .borderLine
+  {
+    border: solid 1px blakc;
+    height: 2px;
+    width: 95%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+  }
+}
+/* End of Mobile Styles */
+
+/* increase products descrition box hegiht at 876px */
+

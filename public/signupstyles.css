@@ -1,0 +1,110 @@
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+}
+.spinnerWrapper
+{
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 20px solid grey;
+    border-top-color: #1502eb;
+    animation: spin 1s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+.height {
+    height: 100vh;
+}
+#logoFont
+{
+    font-family: 'Tajawal', sans-serif;
+}
+.card {
+    border: none;
+    padding: 20px;
+    background-color: #deeeea;
+    color: #0000 !important;
+}
+.form-input, .form-select {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #0000 !important;
+
+}
+
+.form-input i{
+    position: absolute;
+    font-size: 18px;
+    top: 15px;
+    left: 10px;
+    color: #000;
+}
+.text-center{
+    color: #0000 !important;
+}
+.text-center>span{
+    color: #0000 !important;
+}
+.form-control, .form-select{
+    height: 50px;
+    text-indent: 24px;
+    font-size: 15px;
+    color: #0000 !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    color: #0000 !important;
+    border-color: #39a9cb;
+}
+
+.form-check-label {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #0000;
+}
+
+.signup {
+    height: 50px;
+    font-size: 14px;
+}
+.btn-primary{
+    background: linear-gradient(60deg, #0b579e, #39a9cb);
+    border-style: none;
+}
+.social {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.social:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}

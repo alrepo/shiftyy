@@ -1,0 +1,1071 @@
+<!--
+=========================================================
+* Material Dashboard Dark Edition - v2.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-dark
+* Copyright 2019 Creative Tim (http://www.creative-tim.com)
+
+* Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <!-- Bootstrap CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <!-- Bootstrap RTL CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.rtl.min.css"
+    integrity="sha384-jHiSqEim4+W1UCvv8kTcMbtCZlRF8MxbgKdfpvncia8gdN1UImBnhTpKtufREzv7" crossorigin="anonymous">
+  <!-- Cloudinary Images Call -->
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"> </script>
+  <!-- Small Animation CSS Styles -->
+  <link rel="stylesheet" href="smallAnimationStyles.css">
+  <!-- Image Modal Styles -->
+  <link rel="stylesheet" href="image_modal_styles.css">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="node_modules/dist/sweetalert2.css">
+  <!-- Bootstrap css & javascript links -->
+  <!-- Font awesome Icons -->
+  <script src="https://kit.fontawesome.com/ab5937a0f1.js" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  <!-- Firebase Storage CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-storage.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDjsKQlqNRWOWD6Qw6tklqtP03BtUW_lqw",
+      authDomain: "groceryapp-b381a.firebaseapp.com",
+      databaseURL: "https://groceryapp-b381a.firebaseio.com",
+      projectId: "groceryapp-b381a",
+      storageBucket: "groceryapp-b381a.appspot.com",
+      messagingSenderId: "1092044916930",
+      appId: "1:1092044916930:web:b3493c5ddfdef83633d35b",
+      storageBucket: 'gs://groceryapp-b381a.appspot.com'
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
+    var photoSource = "";
+
+    function selectImage(e) {
+      console.log("got file");
+      // console.log("file name is: "+file.name);
+      let file = e.target.file[0];
+
+      // let file = document.getElementById('#supplierPhoto');
+      // photoSource = file.name;
+      // console.log("new path is: "+photoSource);
+    }
+  </script>
+
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <!-- Google Fonts / Arabic -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="./assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <!-- Bootstrap css & javascript links -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
+
+  <style>
+    .dropdown-menu {
+      background-color: white !important;
+    }
+
+    body {
+      background-color: white !important;
+      color: black !important;
+      font-family: 'Tajawal', sans-serif !important;
+    }
+
+    .sidebar {
+      width: 150px !important;
+    }
+
+    .sidebar-icon
+    {
+      max-height: 25%;
+      max-width: 25%;
+      margin-left: 5px;
+    }
+
+    .nav-item {
+      width: 100% !important;
+      text-align: center !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+    }
+
+    .navbar-toggler {
+      margin-left: auto !important;
+    }
+
+    a {
+      color: black !important;
+    }
+
+    i {
+      color: black !important;
+    }
+
+    .card {
+      background-color: #deeeea !important;
+    }
+
+    .card-header {
+      background: linear-gradient(60deg, #097a9c, #39a9cb) !important;
+    }
+
+    #myAccountButton {
+      background-color: white !important;
+      color: blue !important;
+    }
+    .btn {
+      background-color: blue !important;
+      color: white !important;
+    }
+    .table {
+      border: none !important;
+      color: black !important;
+    }
+
+    thead {
+      text-align: center;
+    }
+
+    tbody {
+      border: blank !important;
+      color: black !important;
+      text-align: right;
+    }
+
+    th {
+      border: solid 1px black !important;
+      color: black !important;
+      font-weight: 400 !important;
+      background-color: #c2f8eb !important;
+    }
+
+    td {
+      border: solid 1px black !important;
+      color: black !important;
+    }
+
+    .nav-item>.nav-link>span {
+      /* background-color: white !important; */
+      color: black !important;
+      font-weight: 900;    }
+    .nav-item>.nav-link
+    {
+      text-align: end;
+    }
+    #supplierPhoto {
+      color: black !important;
+    }
+
+    .form-input>input[type=text] {
+      color: black !important;
+    }
+
+    #catalogueList {
+      margin-top: 15px;
+    }
+
+    #menuProductAddButton {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border-color: transparent;
+      background-color: blue;
+      color: #fff;
+      font-size: 30px;
+      border-width: 0;
+      padding: 0;
+    }
+
+    .productInfoWrapper {
+      display: grid;
+      align-items: end;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: auto;
+      border: 1px solid grey;
+      word-wrap: normal;
+      text-align: center;
+    }
+
+    .child {
+      border: 2px solid #e7e7e7;
+      border-radius: 1px;
+      padding: 0.5rem;
+      max-height: 150px;
+      margin: 1px;
+      padding: 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .productText {
+      max-width: 200px;
+      border-radius: 10px;
+      border: 0.5px solid grey;
+    }
+
+    footer {
+      display: none !important;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 991.98px) {
+      .navbar-expand-lg {
+        justify-content: center !important;
+      }
+
+      #myPublicProfileDesktop {
+        display: none;
+      }
+
+      #homePageIconDesktop {
+        display: none;
+      }
+
+      .productInfoWrapper {
+        display: grid;
+        align-items: end;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: auto;
+        border: 1px solid grey;
+        word-wrap: normal;
+        text-align: center;
+      }
+
+      #catalogueList {
+        margin-top: 5px;
+      }
+
+      #logoutDesktop {
+        display: none;
+      }
+
+      #myPublicProfileMobile {
+        display: block;
+      }
+
+      #logoutMobile {
+        display: block;
+        color: rgb(236, 79, 79);
+      }
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 991.99px) {
+      .navbar-expand-lg {
+        justify-content: center !important;
+      }
+
+      .dropdown-menu .dropdown-item,
+      .dropdown-menu li>a {
+        display: block !important;
+      }
+
+      .dropdown-item li:active {
+        background: linear-gradient(60deg, blue, rgb(88, 88, 241)) !important;
+      }
+
+      .card .card-body {
+        padding: 20px;
+        position: relative;
+      }
+
+      #myPublicProfileDesktop {
+        display: block;
+        justify-self: center !important;
+        align-self: center !important;
+        border-radius: 10px !important;
+        text-align: center !important;
+      }
+
+      #homePageIconDesktop {
+        display: block;
+        align-self: center !important;
+      }
+
+      #logoutDesktop {
+        display: block;
+        background-color: rgb(236, 79, 79);
+        border-radius: 10px;
+        align-self: center !important;
+        margin-left: 15px !important;
+      }
+
+      #logoutMobile {
+        display: none;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="dark-edition">
+  <div class="wrapper">
+    <div class="sidebar" data-color="purple" data-background-color="grey" data-image="./assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li id="myPublicProfileMobile" class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" >
+            <span>متجري</span>
+            <img src="/images/store.svg" class="sidebar-icon">
+          </a>
+        </li>
+        <li id="homePageIconMobile" class="nav-item">
+          <a class="nav-link" href="../authorised/market">
+            <span>السوق</span>
+            <img src="/images/market.svg" class="sidebar-icon">
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="./catalogue.html">
+            <span>الكاتالوج</span>
+            <img src="/images/catalogue.svg" class="sidebar-icon">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./orders.html">
+            <span>الطلبات</span>
+            <img src="/images/orders.svg" class="sidebar-icon">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./profile-settings.html">
+            <span>الإعدادات</span>
+            <img src="/images/settings.svg" class="sidebar-icon">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="logoutMobile" class="nav-link" href="" onclick='return logOutOfPage()'>
+            <span class="d-lg-none">
+              خروج
+            </span>
+            <img src="/images/logout.png" class="sidebar-icon">
+          </a>
+        </li>
+        <!-- <li class="nav-item active-pro ">
+            <a class="nav-link" href="./upgrade.html">
+                <i class="material-icons">unarchive</i>
+                <p>Upgrade to PRO</p>
+            </a>
+        </li> -->
+      </ul>
+    </div>
+    </div>
+    <div class="main-panel">
+      <!-- START Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-start">
+            <ul class="navbar-nav">
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li> -->
+
+              <div dir="rtl" id="myPublicProfileDesktop" class="dropdown mr-auto ml-1">
+                <button id="myAccountButton" type="button" class="btn dropdown-toggle" name="button"
+                  style="border: solid 1px #1502be; font-weight: 900; color: black;" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">حسابي</button>
+                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" id="logoutButton" type="button" name="button">خروج</a>
+                </div>
+              </div>
+            </ul>
+          </div>
+          <!--           
+          <li class="d-flex justify-content-end nav-item">
+            <div class="justify-content-center" style="align-items: center; ">
+              <button id="myPublicProfileDesktop" type="button" style="font-size: 1rem; margin-right: 35px;  margin-top: 15px"
+                class="btn">الذهاب للمتجر</button>
+            </div>
+            <a id="homePageIconDesktop" class="nav-link" href="/authorised/market">
+              <img src="/images/house.png" alt="">  
+              <p class="d-lg-none d-md-block">
+                السوق
+              </p>
+            </a>
+          </li> -->
+        </div>
+
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-md-10 col-lg-12 justify-content-center">
+              <!-- <div class="navbar-wrapper">
+                <button id="myPublicProfileMobile" type="button"
+                  style="justify-self: center; font-size: 1rem; margin-left: auto; margin-right: auto;  margin-top: 15px"
+                  class="btn">الذهاب للمتجر</button>
+              </div> -->
+              <div class="card">
+                <div class="card-header card-header-primary text-align-right">
+                  <h4 class="card-title">الكاتالوج</h4>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <div class="productInfoWrapper" dir="rtl">
+                          <div class="child" style="align-self: start;" dir="rtl">
+                            <div class="" style="text-align: center;">
+                              <label for="productName" style="color: black">اسم المنتج</label><br>
+                              <input type="text" class=""
+                                style="border: solid 0.5px grey; height: 2rem; text-align: right; width: 135px"
+                                id="productName" name="productName" autocomplete="off">
+                            </div>
+                          </div>
+                          <div class="child" dir="rtl">
+                            <label for="productCategory" style="color: black">تصنيف المنتج</label><br>
+                            <div class="" style="margin-right: auto; margin-left: auto; width: 135px">
+                              <select id="productCategory"
+                                style="border: 0.5px solid grey; height: 2rem; text-align: left;"
+                                class="form-select form-select mw-25" aria-label=".form-select example">
+                                <option selected></option>
+                                <option value="1">جميع الأصناف</option>
+                                <option value="2">لحوم</option>
+                                <option value="3">قهوة و شاي</option>
+                                <option value="4">مستلزمات بلاستيكية</option>
+                                <option value="5">خضروات و فواكة</option>
+                                <option value="6">المخبوزات</option>
+                                <option value="7">البهارات</option>
+                                <option value="8">المأكولات المبردة</option>
+                                <option value="9">المشروبات</option>
+                                <option value="10">المعلبات</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="child" dir="rtl">
+                            <div class="" style="text-align: center; display: inline-block;">
+                              <label for="productPrice" style="color: black">السعر</label><br>
+                              <input class="" type="text"
+                                style="border: solid 0.5px grey; height: 2rem; text-align: right; width: 135px"
+                                id="productPrice" name="productPrice" autocomplete="off">
+                            </div>
+                          </div>
+                          <div class="child" dir="rtl">
+                            <label for="productَQuantity" style="color: black">الكمية</label><br>
+                            <div class="" style="margin-right: auto; margin-left: auto; width: 135px">
+                              <select id="productQuantity"
+                                style="border: 0.5px solid grey; height: 2rem; text-align: left;"
+                                class="form-select form-select mw-25" aria-label=".form-select example">
+                                <option selected></option>
+                                <option value="1">الكيلو</option>
+                                <option value="2">اللتر</option>
+                                <option value="3">الكرتون</option>
+                                <option value="4">العلبة</option>
+                                <option value="5">الحبة</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="child" style="align-self: start;" dir="rtl">
+                            <div class="card-avatar">
+                              <img id="product_default_image" class="img"
+                                src="https://res.cloudinary.com/ddu27xuu5/image/upload/c_scale,h_150,w_150/v1629605205/products-Images/product_default_image_bnoeqo.svg"
+                                alt="product image" style="width:100px; height: 100px">
+                              <!-- <img id="productImage" class="img" style="width:100px; height: 100px" src="product_default_image.svg" /> -->
+
+                              <!-- Start Image Modal -->
+                              <div id="productImageModal" class="modal-image">
+                                <span class="close" style="color: #FFF">&times;</span>
+                                <img class="image-modal-content" id="modalImage">
+                              </div>
+                              <!-- End Image Modal -->
+
+                            </div>
+                            <button id="upload_widget" type="button" class="cloudinary-button btn btn-primary">رفع صورة
+                              المنتج</button>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 justify-content-center" style="display: grid;">
+                        <div style="align-self: center; justify-self: center; text-align: center">
+                          <button id="menuProductAddButton" type="button">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div id="catalogueList" class="row">
+                      <div style="width: 100%" class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <table id="myTable" class="" style="min-width:100%;">
+                          <tr id="appendProductsAfterThisRow">
+                            <th style="text-align: center; font-size: 14px;">(ر.س.) السعر</th>
+                            <th style="text-align: center; font-size: 14px;">الكمية</th>
+                            <th style="text-align: center; font-size: 14px;">المنتج</th>
+                            <th style="text-align: center; font-size: 14px;">التصنيف</th>
+                          </tr>
+
+                        </table>
+                        <div>
+                          <!-- Start loading animation -->
+                          <div class="smallLoadingAnimation">
+                            <div class="dotsSmall one">
+                              <div class="dotSmall"></div>
+                              <div class="dotSmall"></div>
+                              <div class="dotSmall"></div>
+                            </div>
+                          </div>
+                          <!-- End loading  animation  -->
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div>
+                        </div>
+                      </div>
+                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 justify-content-center" style="display: grid;">
+                        <div style="align-self: center; justify-self: center; text-align: center">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                </form>
+                <div style="text-align: center; color: black">
+                  <button style="opacity: 0.5;" id="saveSupplierProfileProducts" type="button"
+                    style="font-size: 23px; color: black;" class="btn btn-warning disabled">حفظ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+
+<!--   Core JS Files   -->
+<script src="logout.js"></script>
+<script src="node_modules/dist/sweetalert2.all.js"></script>
+<script src="addNewProductToSupplierDashboard.js" type="text/javascript"></script>
+<script src="./assets/js/core/jquery.min.js"></script>
+<script src="./assets/js/core/popper.min.js"></script>
+<script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+<script src="https://unpkg.com/default-passive-events"></script>
+<script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Chartist JS -->
+<script src="./assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="./assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="./assets/demo/demo.js"></script>
+<script src="image_modal_script.js"></script>
+<script type="text/javascript">
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      let isNewUser = localStorage.getItem("isNewUser");
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // if (firebase.auth().currentUser.metadata.creationTime === firebase.auth().currentUser.metadata.lastSignInTime)
+      if (isNewUser == "true") {
+        console.log("////// " + "new user? " + isNewUser + " //////");
+        localStorage.setItem("isNewUser", "false");
+
+        let newSupplier = {}
+        let newSupplierName = localStorage.getItem("supplierName");
+        console.log("supplier name: " + newSupplierName);
+        let newSupplierProfileImage = localStorage.getItem("supplierProfileImage");
+
+        // let newSupplierImageProfile  = "images/barberAvatar.png";
+        // firebase.storage().ref('users/' + supplierID + '/profile.jpg').getDownloadURL().then(imgUrl =>{
+        //   img.src = imgUrl;
+        //    });
+        let newSupplierEmail = localStorage.getItem("supplierEmail");
+        let newSupplierProvince = localStorage.getItem("supplierProvince");
+        let newSupplierCity = localStorage.getItem("supplierCity");
+        // let supplierProfileImage = firebase.storage().ref('users/' + firebase.auth().currentUser.uid + '/profile.jpg').getDownloadURL().then(imgUrl =>{
+        //     document.getElementById("SupplierProfileImage").src = imgUrl;
+        // });
+        // let supplierEmail = localStorage.get("supplierEmail");
+
+        let newSupplierID = user.uid;
+        localStorage.setItem("supplierID", newSupplierID);
+        let newSupplierProfile = {};
+        let key = newSupplierID;
+        if (newSupplierName != "" && newSupplierEmail != "" && newSupplierProvince != "") {
+          // console.log(newSupplierID + " is your user id");
+          // console.log(newSupplierName + " is your supplier name");
+          // console.log(newSupplierEmail + " is your supplier email");
+          // console.log(newSupplierProvince + " is your province");
+          // console.log(newSupplierCity + " is your city");
+
+          // Add a new user/supplier to database
+          newSupplierProfile = {
+            supplierID: newSupplierID,
+            supplierName: newSupplierName,
+            supplierProfileImage: newSupplierProfileImage,
+            supplierEmail: newSupplierEmail,
+            supplierProvince: newSupplierProvince,
+            supplierCity: newSupplierCity,
+            clients: {
+              "supplierID": newSupplierID
+            },
+            deliveryServiceAvailability: { 
+              "available":"no"
+            },
+            deliveryTimes: {
+              "الأحد":["٨م","٧م"],
+              "الإثنين":["٥م","٩م"],
+              "الثلاثاء":["٣م","٦م"],
+              "الأربعاء":["٣م","٦م"],
+              "الخميس":["٣م","٦م"],
+              "الجمعة":["٣م","٦م"],
+              "السبت":["٣م","٦م"]
+            },
+            supplierCategory: ["allCategories"]
+          };
+          newSupplier[key] = newSupplierProfile;
+          db.collection('suppliers').doc('Supplier Profiles').set(newSupplier, {
+              merge: true
+            }).then(() => {
+              console.log("Supplier added to database successfully !");
+              document.querySelector(".spinnerWrapper").style.display = "none";
+            })
+            .catch((error) => {
+              console.error("Error adding supplier to database: ", error);
+            });
+          // localStorage.setItem("userType", "OldUser");
+        }
+      } else {
+        // for current suppliers log in
+
+        console.log("////// " + "new user? " + isNewUser + " //////");
+
+        let supplierName = localStorage.getItem("supplierName");
+        let supplierEmail = localStorage.getItem("supplierEmail");
+        let supplierID = localStorage.getItem("supplierID");
+        let supplierProducts = localStorage.getItem("supplierProducts");
+        let supplierClients = localStorage.getItem("supplierClients");
+        let productsIsEmpty = localStorage.getItem("productsIsEmpty");
+        let clientsIsEmpty = localStorage.getItem("clientsIsEmpty");
+        let supplierProfileImageSrc = localStorage.getItem("supplierProfileImage");
+
+        //products
+        let parsedSupplierProducts = []
+
+        if (productsIsEmpty == "false") {
+          parsedSupplierProducts = JSON.parse(supplierProducts);
+        }
+        let productCollection = ""
+        let i = 0;
+        for (var key in parsedSupplierProducts) {
+          i = i + 1;
+          productCollection = parsedSupplierProducts[key]
+        }
+
+        //My current clients
+        let parsedSupplierClients = []
+
+        if (clientsIsEmpty == "false") {
+          parsedSupplierClients = JSON.parse(supplierClients);
+        }
+        let clientText = ""
+        let j = 0;
+        for (var key in parsedSupplierClients) {
+          j = j + 1;
+          clientText = parsedSupplierClients[key]
+          console.log(clientText);
+        }
+
+        console.log(supplierName + ", email is:" + supplierEmail + ", " + supplierID + ", " +
+          supplierProfileImageSrc)
+
+      }
+
+    } else {
+      // User is signed out
+      // window.location.href = "index.html";
+      window.location.replace("../index");
+    }
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $().ready(function () {
+
+
+      $sidebar = $('.sidebar');
+
+      $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+      $full_page = $('.full-page');
+
+      $sidebar_responsive = $('body > .navbar-collapse');
+
+      window_width = $(window).width();
+
+      $('.fixed-plugin a').click(function (event) {
+        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+        if ($(this).hasClass('switch-trigger')) {
+          if (event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true;
+          }
+        }
+      });
+
+      $('.fixed-plugin .active-color span').click(function () {
+        $full_page_background = $('.full-page-background');
+
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data-color', new_color);
+        }
+
+        if ($full_page.length != 0) {
+          $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.attr('data-color', new_color);
+        }
+      });
+
+      $('.fixed-plugin .background-color .badge').click(function () {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('background-color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data-background-color', new_color);
+        }
+      });
+
+      $('.fixed-plugin .img-holder').click(function () {
+        $full_page_background = $('.full-page-background');
+
+        $(this).parent('li').siblings().removeClass('active');
+        $(this).parent('li').addClass('active');
+
+
+        var new_image = $(this).find("img").attr('src');
+
+        if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+          $sidebar_img_container.fadeOut('fast', function () {
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $sidebar_img_container.fadeIn('fast');
+          });
+        }
+
+        if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+          $full_page_background.fadeOut('fast', function () {
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+            $full_page_background.fadeIn('fast');
+          });
+        }
+
+        if ($('.switch-sidebar-image input:checked').length == 0) {
+          var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+          $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+          $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+        }
+      });
+
+      $('.switch-sidebar-image input').change(function () {
+        $full_page_background = $('.full-page-background');
+
+        $input = $(this);
+
+        if ($input.is(':checked')) {
+          if ($sidebar_img_container.length != 0) {
+            $sidebar_img_container.fadeIn('fast');
+            $sidebar.attr('data-image', '#');
+          }
+
+          if ($full_page_background.length != 0) {
+            $full_page_background.fadeIn('fast');
+            $full_page.attr('data-image', '#');
+          }
+
+          background_image = true;
+        } else {
+          if ($sidebar_img_container.length != 0) {
+            $sidebar.removeAttr('data-image');
+            $sidebar_img_container.fadeOut('fast');
+          }
+
+          if ($full_page_background.length != 0) {
+            $full_page.removeAttr('data-image', '#');
+            $full_page_background.fadeOut('fast');
+          }
+
+          background_image = false;
+        }
+      });
+
+      $('.switch-sidebar-mini input').change(function () {
+        $body = $('body');
+
+        $input = $(this);
+
+        if (md.misc.sidebar_mini_active == true) {
+          $('body').removeClass('sidebar-mini');
+          md.misc.sidebar_mini_active = false;
+
+          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+        } else {
+
+          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+          setTimeout(function () {
+            $('body').addClass('sidebar-mini');
+
+            md.misc.sidebar_mini_active = true;
+          }, 300);
+        }
+
+        // we simulate the window Resize so the charts will get updated in realtime.
+        var simulateWindowResize = setInterval(function () {
+          window.dispatchEvent(new Event('resize'));
+        }, 180);
+
+        // we stop the simulation of Window Resize after the animations are completed
+        setTimeout(function () {
+          clearInterval(simulateWindowResize);
+        }, 1000);
+
+      });
+    });
+  });
+</script>
+<script>
+  function goToMyStorePage() {
+    window.location.href = "/authorised/supplierProfile/" + localStorage.getItem("supplierID");
+  };
+  document.getElementById("myPublicProfileMobile").addEventListener("click", function () {
+    window.location.href = "/authorised/supplierProfile/" + localStorage.getItem("supplierID");
+  });
+</script>
+<script>
+  // Start Product Photo Handling Code...
+  document.getElementById("upload_widget").addEventListener('click', function () {
+    widget.open();
+  });
+
+  // Cloudinary code...
+  var widget = cloudinary.createUploadWidget({
+    cloudName: "ddu27xuu5",
+    uploadPreset: "product",
+    folder: "products-images",
+    multiple: false,
+    language: "ar",
+    sources: ["local", "camera", "url", "instagram", "facebook"],
+    text: {
+      "ar": {
+        "or": "أو",
+        "menu": {
+          "files": "ملفاتي",
+          "camera": "الكاميرا",
+          "web": "رابط الكتروني",
+          "instagram": "انستقرام",
+          "facebook": "فيسبوك",
+        },
+        "selection_counter": {
+          "selected": "تم اختيارها"
+        },
+        "queue": {
+          "title": "تم رفع الملفات",
+          "title_uploading_with_counter": "إضافة {{num}} ملف",
+          "done": "إغلاق",
+          "retry_failed": "إعادة المحاولة",
+          "abort_all": "إلغاء الكل",
+          "upload_more": "",
+          "statuses": {
+            "uploading": "تحميل...",
+            "error": "خطأ",
+            "uploaded": "تم الرفع",
+            "aborted": "فشلت"
+          }
+        },
+        "local": {
+          "browse": "اختر ملف",
+          "dd_title_single": "اسحب الصورة وافلتها هنا",
+          "dd_title_multi": "اسحب الصور وافلتها هنا",
+          "drop_title_single": "اسحب ملف لرفعه",
+          "drop_title_multiple": "اسحب ملفات لرفعها"
+        },
+        "camera": {
+          "capture": "تصوير",
+          "cancel": "إلغاء",
+          "take_pic": "إلتقط صورة و ارفعها",
+          "explanation": "الرجاء التأكد من توصيل الكاميرا ثم التأكد من أن إعدادات المتصفح تسمح بإلتقاط صورة عبر الكاميرا . عند الاستعداد اضغط على زر (تصوير)",
+        },
+        "url": {
+          "inner_title": "عنوان موقع الصورة المراد رفعها",
+          "input_placeholder": "http://remote.site.example/images/remote-image.jpg"
+        },
+        "instagram": {
+          "no_auth_title": "اختر ملفات من حسابك في انستقرام",
+          "no_auth_action": "الدخول لحساب انستقرام",
+          "header_title": "أحدث صورك  في الانستقرام",
+          "authenticating": "يتم التأكد من المعلومات..."
+        },
+        "facebook": {
+          "no_photos": "لا يوجد  صور...",
+          "no_auth_title": "اختر ملفات من حسابك في فيسبوك",
+          "no_auth_action": "الاتصال بفيسبوك",
+          "no_auth_statement": "لن نستخدم أي ملف بدون إذنك",
+          "album_subtitle": "{{count}} صورة",
+          "menu": {
+            "uploaded": "كل الصور",
+            "tagged": "صور متواجد فيها",
+            "albums": "الألبومات"
+          }
+        },
+        "actions": {
+          "upload": "رفع",
+          "clear_all": "إلغاء التحديد",
+          "log_out": "خروج"
+        },
+        "notifications": {
+          "general_error": "حدث خطأ",
+          "general_prompt": "هل أنت متأكد؟",
+          "limit_reached": "لايمكن اختيار المزيد من الملفات",
+          "invalid_add_url": "يجب أن يكون العنوان صحيحاً",
+        }
+      }
+    }
+  }, (error, result) => {
+
+    if (!error && result && result.event === "success") {
+      console.log('Done! Here is the image info: ', result.info["secure_url"]);
+      let imgURL = result.info["secure_url"];
+      document.getElementById("product_default_image").src = result.info["secure_url"];
+      let newProfileImageSrc = imgURL;
+      updateProfileImage(newProfileImageSrc);
+      localStorage.setItem("product_default_image", imgURL);
+
+      function updateProfileImage(newProfileImageSrc) {
+        console.log(newProfileImageSrc);
+
+        let productImage = {
+          "product_default_image": newProfileImageSrc
+        };
+        db.collection('suppliers').doc('Supplier Profiles').set({
+            [firebase.auth().currentUser.uid]: supplierProfileImage
+
+          }, {
+            merge: true
+          }).then(() => {
+            console.log("Supplier added to database successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error adding supplier to database: ", error);
+          });
+
+      }
+    }
+  });
+  // End Product Photo Handling Code...
+</script>
+
+</html>

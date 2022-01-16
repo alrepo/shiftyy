@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lan="ar" dir="rtl">
+
+<head>
+    <!-- Cloudinary Images Call -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <!-- Firebase Storage CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDjsKQlqNRWOWD6Qw6tklqtP03BtUW_lqw",
+            authDomain: "groceryapp-b381a.firebaseapp.com",
+            databaseURL: "https://groceryapp-b381a.firebaseio.com",
+            projectId: "groceryapp-b381a",
+            storageBucket: "groceryapp-b381a.appspot.com",
+            messagingSenderId: "1092044916930",
+            appId: "1:1092044916930:web:b3493c5ddfdef83633d35b"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+    </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-jHiSqEim4+W1UCvv8kTcMbtCZlRF8MxbgKdfpvncia8gdN1UImBnhTpKtufREzv7" crossorigin="anonymous">
+    <!-- Bootstrap css & javascript links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- CSS Style Files -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="categoryCards_index.css">
+    <link rel="stylesheet" href="node_modules/dist/sweetalert2.css">
+    <link rel="stylesheet" href="supplierProfileStyles.css">
+    <!-- Small Animation CSS Styles -->
+    <link rel="stylesheet" href="smallAnimationStyles.css">
+
+    <!-- Font Awesome for All Icons other than the quantity buttons-->
+    <script src="https://kit.fontawesome.com/ab5937a0f1.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome fpr Quantity Buttons-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Image Modal Styles -->
+    <link rel="stylesheet" href="image_modal_styles.css">
+
+    <!-- Google Fonts / Arabic -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- CDN for Date Picker (from https://flatpickr.js.org/) -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/themes/material_blue.min.css">
+    
+    <style>
+        html {
+            z-index: 9;
+        }
+
+        .form-control.input-number {
+            font-weight: bold;
+            color: black;
+            width: 2.5rem;
+        }
+        .card-body
+        {
+            padding: 0.5rem!important;
+        }
+        .card-title
+        {
+            padding: 0 !important;
+        }
+        .form-control.input-number {
+            font-weight: bold;
+            color: black;
+            width: 2.5rem;
+        }
+         /* start invoice modal styles  */
+         @media (min-width: 576px)
+        {
+            .modal-dialog 
+            {
+                max-width: 700px !important;
+                margin-bottom: 0 !important;
+                /* position: fixed;
+                bottom: 0; */
+            }
+
+        }
+        @media (max-width: 575.99px)
+        {
+            .modal-dialog 
+            {
+                width: 100% !important;
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+                margin-bottom: 0 !important;
+                height: 100% !important;
+            }
+        }
+        /* end invoice modal styles  */
+
+        @media(min-width: 991px)
+        {
+            #shoppingCart 
+            {
+                position: fixed;
+                top: 0;
+                left: 50%;
+                margin-right: auto;
+                padding: 0;
+                cursor: pointer;
+             }
+        }
+        @media(max-width: 990.99px)
+        {
+            #shoppingCart 
+            {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                margin-right: auto;
+                padding: 0;
+                cursor: pointer;
+             }
+        }
+        .checkoutBadge {
+            height: 30px;
+            width: 30px;
+            background-color: #21c999;
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+            position: relative;
+            transform: rotate(-50deg);
+            border-radius: 5px;
+            top: 10px;
+            left: 6px;
+            padding: 6px;
+            z-index: 0;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        .shopping-cart-icon {
+            font-size: 35px;
+            opacity: 1;
+            z-index: 2;
+            color: rgb(14, 13, 13);
+            position: relative;
+            display: inline-block;
+            margin-right: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+    <span id='productsArray' hidden>
+        <%= JSON.stringify(products); %>
+    </span>
+
+    <!-- ////////////////////////////////////// START NAVIGATION BAR ////////////////////////////////////////// -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="padding: 5px">
+        <a id="logoFont" class="navbar-brand"
+            style="color: blue; font-weight: 900; font-size: 2rem; font-style: italic ;margin-left: 35px;"
+            href="../index">كتشن باي</a>
+            <a id="shoppingCart" onclick="openBasket()" data-toggle="modal" data-target="#bottom_modal">
+                <div class="checkoutBadge">0</div>
+                <i class="fas fa-2x fa-shopping-cart shopping-cart-icon"></i>
+            </a>
+        <div class="dropdown mr-auto ml-1" id="collapsedNavbarItems">
+            <button type="button" class="btn dropdown-toggle" name="button"
+                style="border: solid 1px #1502be; font-weight: 900; color: black;" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">حسابي</button>
+            <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item  text-center" href="/catalogue.html">لوحة التحكم</a>
+                <a class="dropdown-item  text-center" href="/authorised/market">السوق</a>
+                <button class="dropdown-item" id="logoutButton" type="button" name="button">خروج</button>
+            </div>
+        </div>
+    </nav>
+    <!-- ///////////////////////////////// END NAVIGATION BAR //////////////////////////////////// -->
+    <div class="container-fluid">
+        <!-- Supplier Info Container -->
+
+        <!-- Start Image Modal -->
+        <div id="productImageModal" class="modal-image">
+            <span class="close" style="color: #FFF">&times;</span>
+            <img class="image-modal-content" id="modalImage">
+          </div>
+          <!-- End Image Modal -->
+
+        <div id="supplierOverallInfoCard" class="row d-flex justify-content-center">
+            <div id="supplierImageContainer" class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <img id="supplierImage" src="<%= imgSource %>" class="mx-auto mb-1 product_image" alt="supplier logo" style="border-radius: 50%; cursor: pointer;">
+            </div>
+            <div id="supplierNameDesktopView" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div id="supplierNameContainer" class=" ml-auto">
+                        <p id="supplierName"><%= name %></p>
+                        <p id="supplierID" style="display: none;"><%= id %></p>
+                    </div>
+                    
+                    <div id="supplierLocationContainer" >
+                        <img src="images/locationIcon.svg" style="height: 24px; width: 24px;" alt=""><span id="provinceText"><%= provience %> ،
+                        </span><span id="cityText">&nbsp<%= city %></span>
+                    </div>
+            </div>
+            <div id="supplierDeliveryTimes" class="col-xs-12 col-sm-12 col-md-5 col-lg-5 align-items-center">
+                <img id="deliveryTimesIcon" src="images/clock.svg" style="height: 24px; width: 24px; padding: 2px; font-weight: 900;"><span>مواعيد التوصيل</span>
+               
+               <div class="scrollmenu" style="padding-right: 24px; padding-top: 5px;">
+                 <!-- Start loading animation -->
+                 <div class="smallLoadingAnimation-deliveryTimes" style="margin-top: 10px; display: inline-block;">
+                    <div class="dotsSmall mr-5">
+                      <div class="dotSmall"></div>
+                      <div class="dotSmall"></div>
+                      <div class="dotSmall"></div>
+                    </div>
+                </div>
+                <!-- End loading  animation  -->
+
+                <div id="deliveryTimesInnerContainer" style="display:inline-block ; visibility: hidden;">
+                    <p id="sunday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الأحد</span><br><span id="sundayTimes">٨ص-٣م</span></p>
+                    <p id="monday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الإثنين</span><br><span id="mondayTimes">٨ص-٣م</span></p>
+                    <p id="tuesday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الثلاثاء</span><br><span id="tuesdayTimes">٨ص-٣م</span></p>
+                    <p id="wednesday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الأربعاء</span><br><span id="wednesdayTimes">٨ص-٣م</span></p>
+                    <p id="thursday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الخميس</span><br><span id="thursdayTimes">٨ص-٣م</span></p>
+                    <p id="friday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>الجمعة</span><br><span id="fridayTimes">٨ص-٣م</span></p>
+                    <p id="saturday" style="min-width:55px; margin-left: 5px; text-align: center; display: none; font-size: 14px; border: solid 1px black; border-radius: 5px; padding: 2px;"><span>السبت</span><br><span id="saturdayTimes">٨ص-٣م</span></p>
+                </div>
+               
+               </div>
+            </div>
+            <div class="borderLine">
+            </div>
+        </div>
+
+        <!-- Products Container -->
+        <div id="supplierProductsCard" class="row d-flex justify-content-center">
+            <!-- <div id="ProductTitleContainer" class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ml-auto">
+    <p class="titles">المنتجات</p>
+  </div> -->
+            <div id="productsDescriptionsContainer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ml-auto">
+                <!-- Start Catrgories -->
+                <div id="categoryContainer" class="container d-flex justify-content-center"
+                    style="text-align: center; padding:0;">
+                    <div class="scrollmenu">
+                        <ul id="allCategories" class="check-card allCategoriesCard" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check01" name="check" value="1">
+                                <label for="check01" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody1" style="color:white" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage1" class="categoryImage" src="food-basket.svg">
+                                        <p class="noselect check-card-description disabled" style="text-align: center;">
+                                            جميع الأصناف
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul id="meat" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check02" name="check" value="1">
+                                <label for="check02" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody2" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage2" class="categoryImage" src="meat.svg">
+                                        <p class="noselect check-card-description disabled" style="text-align: center;">
+                                            لحــوم
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="coffeeTea" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check03" name="check" value="1">
+                                <label for="check03" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody3" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage3" class="categoryImage" src="coffee.svg">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            شاي و قهوة
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="plastics" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check04" name="check" value="1">
+                                <label for="check04" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody4" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage4" class="categoryImage" src="plastics.svg">
+                                        <p id="largeFontSmallScreenHandling" class="noselect check-card-description"
+                                            style="text-align: center;">
+                                            مسلتزمات بلاستيكية
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="fruit" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check05" name="check" value="1">
+                                <label for="check05" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody5" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage5" class="categoryImage" src="fruit.svg">
+                                        <!-- <img id="fruit2" src="berry2.png" style="display: none;"> -->
+                                        <p class="noselect check-card-description disabled" style="text-align: center;">
+                                            خضروات و فواكة
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="baked" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check06" name="check" value="1">
+                                <label for="check06" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody6" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage6" class="categoryImage" src="bread.svg">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            المخبوزات
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="spices" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check07" name="check" value="1">
+                                <label for="check07" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody7" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage7" class="categoryImage" src="salt.svg">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            البهارات
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="frozen" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check08" name="check" value="1">
+                                <label for="check08" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody8" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage8" class="categoryImage" src="frozen.svg">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            المأكولات المبردة
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="drinks" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check09" name="check" value="1">
+                                <label for="check09" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody9" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage9" class="categoryImage" src="drinks.svg">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            المشروبات
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="tin-cans" class="check-card" style="display: inline-block">
+                            <li class="check-card-item">
+                                <input type="checkbox" id="check10" name="check" value="1">
+                                <label for="check10" class="radio"></label>
+                                <div class="check-card-bg"></div>
+                                <div id="cardBody10" style="color:blue;" class="check-card-body">
+                                    <div class="check-card-toggle">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="check-card-body-in">
+                                        <img id="categoryImage10" class="categoryImage" src="tin-cans.png">
+                                        <p class="noselect check-card-description" style="text-align: center;">
+                                            المعلبات
+                                        </p>
+                                    </div>
+                                    <!-- <div class="check-card-cancel">CANCEL</div> -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Catrgories -->
+
+                <!-- /////////////////////////////// START PRODUCTS CARDS /////////////////////////////-->
+                <div id="supplierProductsCardsContainer" class="">
+                    <div class="col-sm-12 col-md-12 col-lg-12" id="startAppendingFromHere"></div>
+                </div>
+                <!-- /////////////////////////////// END PRODUCTS CARDS /////////////////////////////-->
+
+                <!--///////////////////// Start Pagination Buttons ///////////////////-->
+                <div id="pagination-wrapper"></div>
+                <!--//////////////////// End Pagination Buttons //////////////////////-->
+            </div>
+
+        </div>
+
+ 
+ <!--Contact Details Container -->
+ <div id="clientContactDetailesCard" class="row">
+
+   <!-- Start Basket and Payment Reciept Modal -->
+    <!-- <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class="mt-5 d-flex justify-content-center">
+            <button id="reviewOrder" type="button" class="btn btn-light border rounded-pill shadow-sm mb-1" data-toggle="modal" data-target="#bottom_modal">إتمام الطلب</button>
+          </div>
+        </div>
+      </div>  -->
+      
+    <div dir="rtl" class="modal modal-bottom fade" id="bottom_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div id="modal-dialog-container" class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: right;">
+                    <div id="ordersContainerTitle" class="">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" >&times;</span>
+                        </button>
+                        <p class="titles">الطلبات</p>
+                        <table id="ordersTable" style="min-width:100%;">
+                            <thead class=" text-primary" style="border: 1px solid black;">
+                                <tr>
+                                    <th id="productNameCell" style="text-align: center; font-size: 14px;  border: 1px solid black;">المنتج</th>
+                                    <th id="productQuantityCell" style="text-align: center; font-size: 14px; border: 1px solid black;">الكمية</th>
+                                    <th id="productPriceCell"style="text-align: center; font-size: 14px; border: 1px solid black;">السعر</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="appendProductsFromHere"> </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        
+                    <div id="clientDataContainer" style="margin-top:10px;">
+                        <div id="contactContainerTitleBox" onclick="showModalFooter()">
+                            <p class="titles">معلومات التوصيل</p>
+                        </div>
+                        <div id="nameContainer" style="padding-left: 10px; padding-right: 10px; text-align:right; margin-left: auto; margin-right: auto;">
+                            <div id="requiredBlock">
+                                <span id="required1" class="d-none" style="font-size: 15px; color: red">*مطلوب</span>
+                            </div>
+                            <i id="required11" class="fas fa-check-circle d-none"></i><span style="margin-right: 5px;">اسم المطعـم</span>
+                            <div class="input-group mb-3" dir="ltr" style="margin-right: 5px; margin-left: 40px;">
+                                <input id="nameInput" type="text" class="form-control" dir="trl"
+                                    aria-label="customerName" aria-describedby="basic-addon2"
+                                    style="text-align: right; border-radius: 15px;">
+                            </div>
+                        </div>
+                        <div id="phoneContainer" style="padding-left: 10px; padding-right: 10px; text-align:right; margin-top:10px; margin-left: auto; margin-right: auto;">
+                            <div id="requiredBlock">
+                                <span id="required2" class="d-none" style="font-size: 15px; color: red">*مطلوب</span>
+                                <span id="required222" class="d-none" style="font-size: 15px; color: red">الرجاء إدخال أرقام
+                                    فقط</span>
+                            </div>
+                            <i id="required22" class="fas fa-check-circle d-none"></i><span style="margin-right: 5px;">رقم الجوال</span>
+                            <div class="input-group mb-3" dir="ltr" style="margin-right: 5px; margin-left: 40px;">
+                                <input id="phoneInput" type="text" class="form-control" dir="trl"
+                                    aria-label="customerName" aria-describedby="basic-addon2"
+                                    style="text-align: right; border-radius: 15px;">
+                            </div>
+                        </div>
+                        <div id="dateAndTimePickerContainer" style="padding-left: 10px; padding-right: 10px; text-align:right; margin-top:10px; margin-left: auto; margin-right: auto;">
+                            <div id="requiredBlock">
+                                <span id="required3" class="d-none"
+                                    style="font-size: 15px; color: red; margin-left: 90px;">*مطلوب</span>
+                            </div>
+                            <i id="required33" class="fas fa-check-circle d-none"></i><span style="margin-right: 5px;">تاريخ التوصيل</span>
+                            <div class="input-group mb-3" dir="rtl" style="margin-right: 5px; margin-left: 40px;">
+                                <input id="datetime-picker" type="text" class="form-control text-center" dir="rtl" value="اضغط لتحديد التاريخ"
+                                    aria-label="customerName" aria-describedby="basic-addon2" readonly="readonly">
+                            </div>
+                        </div>
+                        <div id="AddressSharingContainer" style="padding-left: 10px; padding-right: 10px; text-align:right; margin-top:10px; margin-left: auto; margin-right: auto;">
+                            <!-- <div id="requiredBlock">
+                                <span id="required3" class="d-none"
+                                    style="font-size: 20px; color: red; margin-left: 90px;">*مطلوب</span>
+                                <i id="required33" class="fas fa-check-circle d-none" style="margin-left: 135px;"></i>
+                            </div> -->
+                            <span style="margin-right: 5px;">العنوان</span>
+                            <div class="input-group mb-3" dir="ltr" style="margin-right: 5px; margin-left: 40px;">
+                                <input id="addressSharingButton" type="button" onclick="getLocation()" class="form-control" dir="trl" value="اضغط لمشاركة العنوان"
+                                    aria-label="customerName" aria-describedby="basic-addon2"
+                                    style="text-align: center; border-radius: 15px;" readonly="readonly">
+                            </div>
+                            <div class="input-group mb-3" dir="ltr" style="margin-right: 5px; margin-left: 40px;">
+                                <input id="manuallyEnteredAddress" type="text" class="form-control" dir="trl" placeholder="أو اكتب عنوانك هنا"
+                                    aria-label="" aria-describedby=""
+                                    style="text-align: center; border-radius: 15px;">
+                            </div>
+                            <!-- Start loading animation -->
+                            <div class="smallLoadingAnimation" style="display: none">
+                                <div class="dotsSmall one">
+                                  <div class="dotSmall"></div>
+                                  <div class="dotSmall"></div>
+                                  <div class="dotSmall"></div>
+                                </div>
+                            </div>
+                              <!-- End loading  animation  -->
+                            <p id="addressText" style="display: none"></p>
+                            <p id="addressStatus" style="display: none"></p>
+                            <div id="mapHolder" style="height: 250px; width: 100%; display: none"></div>
+                        </div>
+                    </div>
+                    <div id="payment-options" class="row">
+                        <p class="titles">طريقة الدفع</p>
+                        <div class="col-lg-3 col-sm-4 payment-options" style="color: #000; background-image: url(/images/cash.svg); background-position: center; background-repeat: no-repeat; background-size:50%; background-color: rgb(197, 195, 195);">
+                            <span style="align-self: flex-start; color: black; font-weight: 900; margin-top: 5px;">كاش</span>
+                            <i style="position: absolute; margin-bottom: 5px; justify-self: center; color: black;" class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 payment-options" style="background-image: url(/images/Mada.svg); background-position: center; background-repeat: no-repeat; background-size:100%">
+                            <span style="font-style: italic; color: red; font-weight: 900; margin-top: 5px;">قريبا</span>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 payment-options" style="background-image: url(/images/Apple_Pay.svg); background-position: center; background-repeat: no-repeat; background-size:100%">
+                            <span style="font-style: italic; color: red; font-weight: 900; margin-top: 5px;">قريبا</span>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 payment-options" style="background-image: url(/images/visa-mastercard.svg); background-position: center; background-repeat: no-repeat; background-size:45%">
+                            <span style="font-style: italic; color: red; font-weight: 900; margin-top: 5px;">قريبا</span>
+                        </div>
+                    </div>
+                </div>
+   
+                <div id="modalFooter" class="modal-header justify-content-center" style="background-color: rgb(226, 223, 223); padding: 0.5rem; border-top: solid 0.5px rgb(226, 223, 223);" dir="rtl">
+                    <div class="text-center w-100" style="text-align: right; margin-left: 5px;">
+                        <button id="bookingButton" type="button" class="btn btn-lg">إرسال الطلب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Basket and Payment Reciept Modal -->
+
+    </div>
+
+    </div>
+
+    <!-- <div id="shoppingCart">
+        <a href="#clientDataContainer">
+            <div class="checkoutBadge">0</div>
+            <i class="fas fa-3x fa-shopping-cart shopping-cart-icon"></i>
+        </a>
+    </div> -->
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="node_modules/dist/sweetalert2.all.js"></script>
+<script src="categoryCards_publicSupplierProfile.js"></script>
+<script src="supplierProductsPagination.js"></script>
+<script src="/authorised/sendClientOrder.js" type="text/javascript"></script>
+
+<!-- <script src="quantityButtonsScript2.js" type="text/javascript"></script> -->
+
+<script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+
+        } else {
+
+            window.location.replace("/supplierProfile/" + document.getElementById("supplierID").innerText);
+        }
+    })
+</script>
+<script>
+var suppliers = db.collection("suppliers").doc("Supplier Profiles");
+
+suppliers.get().then((doc) => {
+    if (doc.exists) {
+      var deliveryTimes = {};
+      var data = doc.data()
+      for (var key in data)
+      {
+        if([key] == document.getElementById("supplierID").innerText)
+        {
+            deliveryTimes = data[key]["deliveryTimes"];
+        }
+      }
+    updateProfileDeliveryTimes(deliveryTimes);
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+function updateProfileDeliveryTimes(deliveryTimes)
+{
+    console.log("inside");
+    console.log(deliveryTimes);
+if(Object.keys(deliveryTimes).length > 0)
+  {
+    for([key, val] of Object.entries(deliveryTimes))
+     {
+        if (key == "الأحد")
+        {
+            document.getElementById("sundayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("sunday").style.display = "inline-block";
+        }
+        else if (key == "الإثنين")
+        {
+            document.getElementById("mondayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("monday").style.display = "inline-block";
+        }
+        else if (key == "الثلاثاء")
+        {
+            document.getElementById("tuesdayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("tuesday").style.display = "inline-block";
+        }
+        else if (key == "الأربعاء")
+        {
+            document.getElementById("wednesdayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("wednesday").style.display = "inline-block";
+        }
+        else if (key == "الخميس")
+        {
+            document.getElementById("thursdayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("thursday").style.display = "inline-block";
+        }
+        else if (key == "الجمعة")
+        {
+            document.getElementById("fridayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("friday").style.display = "inline-block";
+        }
+        else if (key == "السبت")
+        {
+            document.getElementById("saturdayTimes").innerText = val[0]+" - "+val[1];
+            document.getElementById("saturday").style.display = "inline-block";
+        }
+     }
+     document.getElementById("deliveryTimesInnerContainer").style.visibility = "visible";
+     document.querySelector(".smallLoadingAnimation-deliveryTimes").style.display = "none";
+  }
+}
+</script>
+<script>
+    document.getElementById("logoutButton").addEventListener('click', function () {
+
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            localStorage.clear();
+            console.log("Signe-out successful");
+            // window.location.href = "../index.html";
+            window.location.replace("/index");
+
+        }).catch((error) => {
+            // An error happened.
+            alert("Error during  logging  out!");
+        });
+
+    });
+</script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCwNUkKdo-Ix7jOV1frkwVyEWtmlRIt0aU&language=ar&result_type=street_address"></script>
+<script>
+
+    flatpickr('#datetime-picker', {
+        "minDate": new Date().fp_incr(0),
+        dateFormat: 'd.m.Y',
+        locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+                shorthand: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+                longhand: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت']
+            }, 
+            months: {
+                shorthand: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                longhand: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
+            }
+        },
+        position: "auto center",
+        disableMobile: "false"
+      });
+        // $("#modal-dialog-container").on('scroll', function()
+        // {
+        //     // flatPicker._positionCalendar();
+        //     console.log("scrolling");
+        // });
+        
+    const loader = document.querySelector(".smallLoadingAnimation");
+        var addressStatus = document.getElementById("addressStatus");
+        var mapHolder = document.getElementById("mapHolder");
+        var addressText = document.getElementById("addressText");
+        var lat = 0;
+        var lng = 0;
+
+        function getLocation()
+        {
+            loader.style.display = "flex";
+
+        if (navigator.geolocation)
+            {
+            navigator.geolocation.getCurrentPosition(showPosition,showError);
+            }
+        else
+        {
+            addressStatus.style.display = "block";
+            loader.style.display = "none";
+            addressStatus.innerText = "جهازك لايدعم مشاركة خريطة الموقع. سيتم التواصل معك لتحديد العنوان";}
+        }
+
+        function showPosition(position)
+        {
+            mapHolder.style.display = "block";
+            addressText.style.display = "block";
+
+            lat=position.coords.latitude;
+            lng=position.coords.longitude;
+            var latlng=new google.maps.LatLng(lat, lng); 
+
+            getReverseGeocodingData(lat, lng)
+
+            var myOptions={
+            center:latlng,zoom:17,
+            mapTypeId:google.maps.MapTypeId.ROADMAP,
+            mapTypeControl:false,
+            navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+            };
+            loader.style.display = "none";
+            var map=new google.maps.Map(mapHolder,myOptions);
+            var marker=new google.maps.Marker({position:latlng,map:map,title:"أنت هنا"});
+
+            // mapHolder.addEventListener('click', function(){
+            //     window.location.href = 'https://www.google.com/maps?q='+lat+','+lng+'&'+'z=17'+'&hl=ar';
+            // });
+        }
+
+        function showError(error)
+        {
+            loader.style.display = "none";
+            switch(error.code) 
+                {
+                case error.PERMISSION_DENIED:
+                addressStatus.innerText="تم رفض مشاركة العنوان"
+                break;
+                case error.POSITION_UNAVAILABLE:
+                addressStatus.innerText="لايوجد معلومات عن العنوان"
+                break;
+                case error.TIMEOUT:
+                addressStatus.innerText="انتهى الوقت للحصول على العنوان"
+                break;
+                case error.UNKNOWN_ERROR:
+                addressStatus.innerText="حدث خطأ"
+                break;
+                }
+        }
+
+        function getReverseGeocodingData(lat, lng)
+         {
+            var latlng = new google.maps.LatLng(lat, lng);
+            // This is making the Geocode request
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'latLng': latlng},  (results, status) =>{
+                if (status !== google.maps.GeocoderStatus.OK) {
+                    alert(status);
+                }
+                // This is checking to see if the Geoeode Status is OK before proceeding
+                if (status == google.maps.GeocoderStatus.OK) {
+                    console.log(results);
+                    var address = (results[0].formatted_address);
+                    addressText.innerText = address;
+                }
+            });
+        }
+</script>
+<script>
+    // Get the modal-image
+var modal = document.getElementById("productImageModal");
+
+// Get the image and insert it inside the modal
+var img = document.querySelectorAll(".product_image").forEach(modalFunction);
+
+var modalImg = document.getElementById("modalImage");
+function modalFunction(element){
+element.addEventListener("click",
+function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+})
+};
+ 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+</script>
+</html>

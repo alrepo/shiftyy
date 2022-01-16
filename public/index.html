@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+ <html lang="ar" dir="rtl">
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+ <head>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+<!-- Bootstrap RTL CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.rtl.min.css"
+  integrity="sha384-jHiSqEim4+W1UCvv8kTcMbtCZlRF8MxbgKdfpvncia8gdN1UImBnhTpKtufREzv7" crossorigin="anonymous">
+<!-- Bootstrap css -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- CSS Style File -->
+<link rel="stylesheet" href="styles.css">
+<!-- Font Awesome for All Icons other than the quantity buttons-->
+<script src="https://kit.fontawesome.com/ab5937a0f1.js" crossorigin="anonymous"></script>
+<!-- Image Modal Styles -->
+<link rel="stylesheet" href="image_modal_styles.css">
+<!-- Google Fonts / Arabic -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="styles.css"> -->
+<link rel="stylesheet" href="node_modules/dist/sweetalert2.css">
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <style>
+    .img
+    {
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+   .text-light 
+    {
+    color: #0a0b0b!important;
+    }
+    /* Desktop styles */
+    @media (min-width: 991px)
+  {
+    #logoFont
+    {
+      line-height: 72px;
+    }
+    #headingText
+    {
+      font-size: 4rem;
+    }
+    #mobileRow
+    {
+      display: none;
+    }
+    #desktopRow
+    {
+      display: flex;
+    }
+    #restaurantsBenefitsTitle
+    {
+      font-size: 40px;
+    }
+    #suppliersBenefitsTitle
+    {
+      font-size: 40px;
+    }
+    ul p 
+    {
+      font-size: 1.5rem;
+    }
+    #suppliersBenefitsImageDesktopView
+    {
+      display: flex;
+    }
+    #suppliersBenefitsImageMobileView
+    {
+      display: none;
+    }
+  }
+  /* Mobile styles */
+  @media (max-width: 990.99px)
+  {
+    #headingText
+    {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    #mobileRow
+    {
+      display: block;
+    }
+    #desktopRow
+    {
+      display: none;
+    }
+    #suppliersBenefits
+    {
+      display: block;
+      text-align: center !important;
+    }
+    ul p 
+    {
+      text-align: right !important;
+      font-size: 1.3rem;
+    }
+    #suppliersBenefitsBorder
+    {
+      display: inline-block;
+    }
+    #restaurantsBenefitsTitle
+    {
+      font-size: 25px;
+    }
+    #suppliersBenefitsTitle
+    {
+      font-size: 25px;
+    }
+    #suppliersBenefitsImageDesktopView
+    {
+      display: none;
+    }
+    #suppliersBenefitsImageMobileView
+    {
+      display: block;
+    }
+    #landing_page_chef_img
+    {
+      display:none;
+    }
+  }
+  /* button:focus 
+  {
+    outline: none;
+    box-shadow: none;
+  } */
+  </style>
+ </head>
+
+ <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+ <body>
+   <!-- Start Image Modal -->
+  <div id="productImageModal" class="modal-image">
+    <span class="close" style="color: #FFF">&times;</span>
+    <img class="landing_page_modal" id="modalImage">
+  </div>
+  <!-- End Image Modal -->
+
+   <!-- ////////////////////////////////////// START NAVIGATION BAR ////////////////////////////////////////// -->
+       <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="padding: 5px; background-color: white;">
+        <a id="logoFont" class="navbar-brand" href="/index"
+            style="color: blue; font-weight: 900; font-size: 2rem; font-style: italic ;margin-left: 35px;">كتشن باي</a>
+         <button style="border: 1px solid blue;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+           <ul class="navbar-nav" style="font-weight: 900;">
+             <li class="nav-item dropdown my-auto">
+               <a class="nav-link dropdown-toggle" style="text-align: center; color: blue; border: solid 1px blue" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 المطاعم
+               </a>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+               <a class="dropdown-item" href="/market" style="text-align: center; font-weight: 900;">السوق</a>
+             </div>
+           </li>
+           <li class="nav-item dropdown my-auto">
+            <a class="nav-link dropdown-toggle" style="text-align: center; color: blue; border: solid 1px blue" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              الموردين والموزعين
+            </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/signin" style="text-align: center; font-weight: 900">دخول</a>
+            <a class="dropdown-item" href="/signup" style="text-align: center; font-weight: 900">إنشاء حساب</a>
+          </div>
+        </li>
+           </ul>
+         </div>
+       </nav>
+   <!-- ///////////////////////////////// END NAVIGATION BAR //////////////////////////////////// -->
+
+ <!--///////////////////////// CONTENT ////////////////////////////////-->
+
+ <div class="container-fluid">
+     <div class="row" style="margin-top: 90px;">
+          <div class="col-sm-2 col-md-2 col-lg-2 col-xlg-3">
+
+          </div>
+          <div class="col-sm-8 col-md-8 col-lg-8 col-xlg-6">
+             <p id="headingText" style="margin-bottom: 20px; color: black; font-weight: 900; font-style: italic; text-align: center;">منصة التوريد للمطاعم الأسهل والأسرع</p>
+             <!-- <p style="color: #fff;font-size: 25px;line-height: 40px;">We help you procure materials fast and track the delivery unitl it reaches the site</p> -->
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 col-xlg-3">
+
+          </div>
+     </div>
+   </div>
+
+  
+ <div class="container-fluid" style="margin-top: 10px;">
+
+   <!--  Start Restaurants Benefits -->
+  <div id="mobileRow" class="row" style="text-align: justify; text-align: center;">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <!-- <img class="w-100 pt-2 pb-2" src="../images/ingredients.svg" alt=""> -->
+      </div>
+      <span id="restaurantsBenefitsTitle" style="font-style: italic; font-weight: 900; background-color: #21c999;" >&nbsp;المميزات للمطاعم&nbsp;</span>
+      <div class="col-sm-12 col-md-12 col-lg-6" style="margin-top: auto; margin-bottom: auto;">
+      <ul class="list-unstyled p-2" style="width:100%; font-style: italic; ">
+        <div class="pt-3 pl-2" style="display: inline-block; border: solid 1px blue; border-radius: 10px; margin-bottom: 20px">
+          <li class="d-flex">
+            <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+            <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+              اطلب من جميع مورديك في منصة واحدة
+            </p>
+          </li>
+          <li class="d-flex">
+            <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+            <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+              اكتشف موردين جدد وعروض مختلفة
+            </p>
+          </li>
+          <li class="d-flex">
+            <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+            <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+            أحصل على أسعار خاصة بأعضاء كتشن باي
+            </p>
+          </li>
+          <li class="d-flex">
+            <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+            <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+              خدمة عملاء لمساعدتك على مدار الساعة
+            </p>
+          </li>
+        </div>
+        <!-- <div id="suppliersBenefitsImageMobileView">
+          <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+            <img id="restaurants_landing_page_1" class="border img" src="../images/restaurants_landing_page_1.png" style="margin-bottom: 20px; width: 90%; max-height: 200px;">
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+            <img id="restaurants_landing_page_2" class="border img" src="../images/restaurants_landing_page_2.png" style="width: 90%; max-height: 200px;">
+          </div>
+        </div> -->
+        <div class="mt-4">
+          <a class="startOrdering pt-3 pb-3 pl-5 pr-5 btn-lg" href="/market" style="text-decoration: none; font-style: italic; color: white; border-radius: 5px; font-weight: bold; background-color: blue; cursor: pointer;">ابدأ بالطلب</a>
+        </div>
+      </ul>
+  </div>
+  </div>
+
+  <div id="desktopRow" class="row" style="text-align: justify; text-align: right;">
+    <div class="col-sm-12 col-md-12 col-lg-6" style="margin-top: auto; margin-bottom: auto;">
+      <span style="font-style: italic; font-weight: 900; font-size: 40px; background-color: #21c999;" >&nbsp;المميزات للمطاعم&nbsp;</span>
+        <ul class="list-unstyled p-2" style="width:100%; font-style: italic;">
+          <div class="pt-3 pl-2" style="display: block; border: solid 1px blue; border-radius: 10px;">
+            <li class="d-flex">
+              <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+              <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+                اطلب من جميع مورديك في منصة واحدة
+              </p>
+            </li>
+            <li class="d-flex">
+              <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+              <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+                اكتشف موردين جدد وعروض مختلفة
+              </p>
+            </li>
+            <li class="d-flex">
+              <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+              <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+              أحصل على أسعار خاصة بأعضاء كتشن باي
+              </p>
+            </li>
+            <li class="d-flex">
+              <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+              <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+                خدمة عملاء لمساعدتك على مدار الساعة
+              </p>
+            </li>
+          </div>
+        </ul>
+    </div>
+    <div id="retaurantsBenefitsImage" class="col-sm-12 col-md-12 col-lg-6">
+      <img class="w-100 h-100 pt-2 pb-2" src="../images/ingredients.svg" alt="">
+    </div>
+    <!-- <div id="retaurantsBenefitsImage" class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+      <img id="restaurants_landing_page_11" class="border img" src="../images/restaurants_landing_page_1.png" style="width: 45%; margin-left: 20px">
+      <img id="restaurants_landing_page_22" class="border img" src="../images/restaurants_landing_page_2.png" style="width: 45%;">
+    </div> -->
+    <div class="mt-4 mb-4 d-flex justify-content-center">
+      <a class="startOrdering pt-3 pb-3 pl-5 pr-5 btn-lg" href="/market" style="text-decoration: none; font-style: italic; color: white; border-radius: 5px; font-weight: bold; background-color: blue; cursor: pointer;">ابدأ بالطلب</a>
+    </div>
+   </div>
+ <!--  End Restaurants Benefits -->
+
+ <!--  Start Supplier Benefits -->
+ <div class="row" style="text-align: center;">
+  <div id="landing_page_chef_img img" class="col-sm-12 col-md-12 col-lg-6">
+    <img class="pt-2 pb-2" src="../images/landing_page_chef.svg" style="max-width: 100%; max-height: 350px;">
+  </div>
+  <div id="suppliersBenefits" class="col-sm-12 col-md-12 col-lg-6" style="text-align: justify; margin-top: auto; margin-bottom: auto; text-align: right;">
+    <span id="suppliersBenefitsTitle" style="font-style: italic; font-weight: 900; background-color: #21c999;" >&nbsp;المميزات للموردين والموزعين&nbsp;</span>
+   <ul class="list-unstyled p-2" style="width:100%; font-style: italic; ">
+     <div id="suppliersBenefitsBorder" class="pt-3 pl-2" style="border: solid 1px blue; border-radius: 10px;">
+      <li class="d-flex">
+        <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+        <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+          استقبل طلبات التوريد في مكان واحد
+        </p>
+      </li>
+      <li class="d-flex">
+        <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+        <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+          أدوات متنوعة لعرض وتسويق منتجاتك
+        </p>
+      </li>
+      <li class="d-flex">
+        <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+        <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+          خدمة عملاء لمساعدتك على مدار الساعة
+        </p>
+      </li>
+      <li class="d-flex">
+        <img class="pt-2 pb-2" src="../images/checkmark.svg" style="display: inline-block; width: 40px; height: 40px"> 
+        <p style="margin-top:10px; margin-right: 5px; width: auto; display: inline-block; color: #000; font-weight: 900;">
+          الربط مع مزودي خدمات التوصيل
+        </p>
+      </li>
+     </div>
+   </ul>
+</div>
+<!-- <div id="suppliersBenefitsImageDesktopView" class="col-sm-12 col-md-12 col-lg-12 justify-content-center">
+  <img id="suppliers_landing_page_1" class="border img" src="../images/suppliers_landing_page_1.png" style="margin-left: 20px; width: 45%;">
+  <img id="suppliers_landing_page_2" class="border img" src="../images/suppliers_landing_page_2.png" style="width: 45%;">
+</div> -->
+
+<!-- <div id="suppliersBenefitsImageMobileView">
+  <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+    <img id="suppliers_landing_page_11" class="border img" src="../images/suppliers_landing_page_1.png" style="margin-bottom: 20px; width: 90%; max-height: 200px;">
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+    <img id="suppliers_landing_page_22" class="border img" src="../images/suppliers_landing_page_2.png" style="width: 90%; max-height: 200px;">
+  </div>
+</div> -->
+<div class="mt-4 d-flex justify-content-center">
+  <a class="startOrdering pt-3 pb-3 pl-4 pr-4 btn-lg" href="/signup" style="min-width: 183.688px; text-decoration: none; font-style: italic; color: white; border-radius: 5px; font-weight: bold; background-color: blue; cursor: pointer;">اعرض منتجاتك</a>
+</div>
+</div>
+
+ <!--  End Supplier Benefits -->
+
+            <!--////////////////////////////// CARDS //////////////////////////////-->
+    </div>
+    <!-- ///////////////////////////// END OF CARDS /////////////////////////////////////////////-->
+
+    <footer class="footer container-fluid text-light mt-5 p-5 mb-0" style="text-align: center; font-size: 1.2rem; height: 300px;">
+      <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 brdr">
+          <ul class="list-unstyled">
+            <!-- <li>About</li>
+            <li>Career</li> -->
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 brdr">
+          <ul class="list-unstyled">
+            <span style="color: blue; font-weight: 900; font-size: 2rem; font-style: italic ">كتشن باي</span>
+            <li><i onclick=" window.location.href = 'https://twitter.com/kitchen_buy'"; style="text-decoration: none; cursor: pointer;" class="fab fa-twitter-square fa-2x ml-3"></i><i onclick=" window.location.href = 'https://www.linkedin.com/in/%D9%83%D8%AA%D8%B4%D9%86-%D8%A8%D8%A7%D9%8A-539bb8218/'"; style="text-decoration: none; cursor: pointer;" class="fab fa-linkedin fa-2x ml-3"></i><i onclick=" window.location.href = 'https://www.facebook.com/profile.php?id=100064889686460'"; style="text-decoration: none; cursor: pointer;" class="fab fa-facebook-square fa-2x ml-3"></i><i onclick=" window.location.href = 'https://www.instagram.com/kitchenbuy_app/'"; style="text-decoration: none; cursor: pointer;" class="fab fa-instagram-square fa-2x"></i>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <ul class="list-unstyled">
+            <!-- <li>About</li>
+            <li>Career</li> -->
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- /////////////////////// START FIREBASE SCRIPT ///////////////////// -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyA8tklBAg0iJDJTtZF-5FtLBGsGBouJJ5Y",
+        authDomain: "faiqa-cms-99d41.firebaseapp.com",
+        databaseURL: "https://faiqa-cms-99d41.firebaseio.com",
+        projectId: "faiqa-cms-99d41",
+        storageBucket: "faiqa-cms-99d41.appspot.com",
+        messagingSenderId: "845253349349",
+        appId: "1:845253349349:web:03fbeacac1c5692e7ee90c",
+        measurementId: "G-CKD0GMZ8S5"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <!-- Custom JavaScript -->
+    <!-- /////////////////////// END FIREBASE SCRIPT ///////////////////// -->
+
+    <!-- JavaScript Bootstrap Links -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="image_modal_script_landing_page.js"></script>
+
+  </body>
+ </html>
